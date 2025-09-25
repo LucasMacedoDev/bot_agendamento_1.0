@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - Clínica Odontológica Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .left-section {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('dentista-nova.jpg') center/cover;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .left-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .clinic-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .clinic-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .whatsapp-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin-top: 20px;
+        }
+
+        .whatsapp-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .whatsapp-info p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .right-section {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #25D366;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .left-section {
+                padding: 30px 20px;
+            }
+
+            .clinic-title {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div class="left-content">
+                <h1 class="clinic-title">Clínica Odontológica Premium</h1>
+                <p class="clinic-subtitle">Cuidando do seu sorriso com excelência e tecnologia</p>
+                
+                <div class="whatsapp-info">
+                    <h3>🤖 Atendimento via WhatsApp</h3>
+                    <p>Nosso bot inteligente está disponível 24h para te ajudar com agendamentos, consultas de horários e informações sobre nossos serviços!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <h2 class="form-title">Agende sua Consulta</h2>
+            <p class="form-subtitle">Preencha os campos abaixo para agendar sua consulta</p>
+
+            <div class="success-message" id="successMessage">
+                ✅ Agendamento realizado com sucesso! Você receberá uma confirmação no WhatsApp.
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                ❌ Erro ao agendar consulta. Tente novamente.
+            </div>
+
+            <form id="agendamentoForm">
+                <div class="form-group">
+                    <label for="nome">Nome Completo *</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefone">Telefone/WhatsApp *</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data">Data Preferida *</label>
+                        <input type="date" id="data" name="data" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="horario">Horário Preferido *</label>
+                        <select id="horario" name="horario" required>
+                            <option value="">Selecione um horário</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="servico">Tipo de Serviço *</label>
+                    <select id="servico" name="servico" required>
+                        <option value="">Selecione um serviço</option>
+                        <option value="consulta-geral">Consulta Geral</option>
+                        <option value="limpeza">Limpeza e Profilaxia</option>
+                        <option value="restauracao">Restauração</option>
+                        <option value="extracao">Extração</option>
+                        <option value="canal">Tratamento de Canal</option>
+                        <option value="clareamento">Clareamento Dental</option>
+                        <option value="implante">Implante</option>
+                        <option value="ortodontia">Ortodontia</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="observacoes">Observações</label>
+                    <textarea id="observacoes" name="observacoes" rows="3" placeholder="Alguma informação adicional..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    Agendar Consulta
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Formatação automática do telefone
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                if (value.length < 14) {
+                    value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+                }
+                e.target.value = value;
+            }
+        });
+
+        // Carrega horários disponíveis quando a data é selecionada
+        document.getElementById('data').addEventListener('change', async function() {
+            const data = this.value;
+            const horarioSelect = document.getElementById('horario');
+            
+            if (!data) {
+                horarioSelect.innerHTML = '<option value="">Selecione um horário</option>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/disponibilidade?data=${data}`);
+                const result = await response.json();
+
+                horarioSelect.innerHTML = '<option value="">Selecione um horário</option>';
+                
+                if (result.horarios_disponiveis && result.horarios_disponiveis.length > 0) {
+                    result.horarios_disponiveis.forEach(horario => {
+                        const option = document.createElement('option');
+                        option.value = horario;
+                        option.textContent = horario;
+                        horarioSelect.appendChild(option);
+                    });
+                } else {
+                    const option = document.createElement('option');
+                    option.value = '';
+                    option.textContent = 'Nenhum horário disponível';
+                    option.disabled = true;
+                    horarioSelect.appendChild(option);
+                }
+            } catch (error) {
+                console.error('Erro ao carregar horários:', error);
+                horarioSelect.innerHTML = '<option value="">Erro ao carregar horários</option>';
+            }
+        });
+
+        // Submissão do formulário
+        document.getElementById('agendamentoForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Esconde mensagens anteriores
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Desabilita botão durante envio
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Agendando...';
+
+            try {
+                const formData = new FormData(this);
+                const dados = Object.fromEntries(formData.entries());
+
+                const response = await fetch('/api/agendar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dados)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    successMessage.style.display = 'block';
+                    this.reset();
+                    document.getElementById('horario').innerHTML = '<option value="">Selecione um horário</option>';
+                } else {
+                    errorMessage.textContent = result.error || 'Erro ao agendar consulta';
+                    errorMessage.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                errorMessage.textContent = 'Erro de conexão. Tente novamente.';
+                errorMessage.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Agendar Consulta';
+            }
+        });
+
+        // Define data mínima como hoje
+        document.getElementById('data').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>
+
